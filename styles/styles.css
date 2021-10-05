@@ -1,3 +1,45 @@
-body{
-    color:rgba(0,255,128);
+#messages-list,
+.note-content,
+.note-header,
+.note-buttons {
+  display: flex;
+}
+#messages-list {
+  width: 100vw;
+  flex-wrap: 1;
+}
+.note {
+  border: 1px solid black;
+  max-width: 25%;
+  margin-left: 15px;
+  padding:10px;
+  max-height: 250px;
+}
+.note-content-left img {
+  max-height: 100px;
+  width: 100px;
+  size: auto;
+}
+.note-content-left {
+  text-align: center;
+}
+.note-content-right{
+    padding:10px;
+    overflow-y: auto;
+    height: 190px;;
+}
+.note-buttons .empty,
+.note-titre {
+  flex-grow: 1;
+}
+.note-titre {
+  text-align: center;
+}
+.note-buttons img {
+  width: 48px;
+  height: 48px;
+}
+.note-buttons {
+  text-align: right;
+  width: 100%;
 }
