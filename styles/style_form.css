@@ -1,0 +1,46 @@
+#saisie-wrapper{
+    margin-left: auto;
+    margin-right: auto;
+    width: 33vw;
+    border:1px solid white;
+    padding: 10px;
+    margin-top:8px;
+}
+#form-buttons{
+    text-align: right;
+}
+form{
+    color:white;
+    width:100%
+}
+form input,form select, form textarea{
+    background-color: transparent;
+}
+.option-priority{
+    color:white;
+}
+.option-priority.high{
+    background-color: tomato;
+}
+.option-priority.low{
+    background-color: skyblue;
+}
+.option-priority.normal{
+    background-color: darkgrey;
+}
+.half>div{
+    display: inline-block;
+    width:49%;
+}
+.top>div{
+    vertical-align: top;
+}
+select#form-dest option{
+    color:black
+}
+.bdl{
+    border-left: 1px solid white;
+}
+.bdr{
+    border-right: 1px solid white;
+}

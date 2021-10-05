@@ -84,6 +84,9 @@ body{
   height: 100vh;
   width:100vw;
 }
+.note{
+  color:white;
+}
 #jsLoaded{
     background-color: tomato;
     color: white;

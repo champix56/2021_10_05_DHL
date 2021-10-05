@@ -7,257 +7,75 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cours Javascript</title>
     <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/style_form.css">
+
+    <!-- Latest compiled and minified CSS & JS -->
+    <link rel="stylesheet" media="screen" href="//netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <script src="//code.jquery.com/jquery.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 </head>
 
 <body>
     <div id="jsLoaded">JS pas chargé</div>
     <div id="main-wrapper">
-        <div id="saisie-wrapper">Zone de saisie</div>
+        <div id="saisie-wrapper">
+            <div id="form-header">
+                Saisie de note
+            </div>
+            <div id="form-content">
+                <form>
+                    <div style="text-align: center;">
+                    <label for="form-title"><h2>Titre de la note</h2></label>
+                    <br />
+                    <input placeholder="saisir titre" type="text" name="form-title" id="form-title" style="width:80%;margin-left: auto;margin-right: auto;">
+                    </div>
+<hr/>
+                    <div class="half top">
+                        <div class="bdr" style="text-align: center;">
+                            <div class="half">
+                                <div>Destinataire :
+                                    <br />
+                                    <select name="form-dest" id="form-dest">
+                                        <option value="0">Tout le monde</option>
+                                        <option value="1">Boby</option>
+                                    </select>
+                                </div>
+                                <div>Priorité :
+                                    <br />
+                                    <select name="form-priority" id="form-priority">
+                                        <option class="option-priority high" value="HIGH">HIGH</option>
+                                        <option class="option-priority normal" value="NORMAL">NORMAL</option>
+                                        <option class="option-priority low" value="LOW">LOW</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="half">
+                                <div>date :<br /><input type="date" name="form-date" id="form-date"></div>
+                                <div>heure :<br /><input type="time" name="form-time" id="form-time"></div>
+                            </div>
+                        </div>
+                        <div class="bdl" style="padding:0 12px ;">
+                            <label for="form-desc">
+                                Description
+                            </label><br/>
+                            <textarea name="form-desc" id="form-desc" style="width:100%; height:70px;resize: none;"></textarea>
+                        </div>
+                    </div>
+                    <hr />
+                    <div id="form-buttons">
+                        <button type="button" class="btn btn-warning">Cancel</button>
+                        <button type="button" class="btn btn-primary">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
         <hr />
         <div id="messages-list">
             <div id="note-0" class="note">
                 <div class="note-buttons">
                     <div class="note-titre">Titre de la note</div>
-                    <div class="note-button"><img src="/img/unfold.png" alt=""><img src="/img/edit.png" alt=""><img src="/img/close.png" alt=""></div>
-
-                </div>
-                <div class="note-header">
-                    <div class="note-date">2021-10-05</div>
-                    <div class="empty">&nbsp;</div>
-                    <div class="note-priority">HIGH</div>
-                </div>
-                <div class="note-content">
-                    <div class="note-content-left">
-                        <div class="note-datepost">Postée le <br /><span class="note-date-post">2021-10-05</span></div>
-                        <div class="note-expediteur"> de:
-                            <img class="note-expediteur-img" src="https://picsum.photos/id/237/600/400" alt="">
-                            <br />
-                            <span class="note-expediteur-name">boss</span>
-                        </div>
-                        <div class="empty"></div>
-                        <div class="note-destinataire">pour :<img class="note-destinataire-img"
-                                src="https://picsum.photos/id/1025/600/400" alt="">
-                            <br />
-                            <span class="note-destinataire-name">employé 1</span>
-                        </div>
-                    </div>
-                    <div class="note-content-right">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae
-                        suscipit rerum quibusdam earum, recusandae laborum dolores inventore, quis dolorum, rem
-                        veritatis libero necessitatibus repellendus soluta in natus commodi fugit quam! Lorem ipsum
-                        dolor sit amet consectetur adipisicing elit. Molestiae sit totam quasi impedit consequatur, sint
-                        cupiditate distinctio quaerat rerum, dolore esse iste voluptatibus aspernatur, voluptate
-                        blanditiis consequuntur beatae ea suscipit. Lorem ipsum dolor sit amet consectetur adipisicing
-                        elit. Porro deserunt autem eveniet minima expedita eaque ut impedit aperiam repudiandae! Laborum
-                        ut suscipit ipsam nostrum quod beatae cum voluptatibus autem! Nobis. Lorem ipsum dolor sit, amet
-                        consectetur adipisicing elit. Dignissimos consectetur esse quod reprehenderit saepe id sequi
-                        tenetur. Suscipit numquam est sequi, earum alias magni officia mollitia! Natus, reprehenderit
-                        odio! Atque. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus accusantium
-                        dolor, ducimus ad magnam repellat laudantium, recusandae, dignissimos obcaecati pariatur autem!
-                        Quo officia nemo magni, pariatur corporis sapiente. Repellendus, provident. </div>
-                </div>
-            </div>
-            <div id="note-0" class="note">
-                <div class="note-buttons">
-                    <div class="note-titre">Titre de la note</div>
-                    <div class="note-button"><img src="/img/unfold.png" alt=""><img src="/img/edit.png" alt=""><img src="/img/close.png" alt=""></div>
-
-                </div>
-                <div class="note-header">
-                    <div class="note-date">2021-10-05</div>
-                    <div class="empty">&nbsp;</div>
-                    <div class="note-priority">HIGH</div>
-                </div>
-                <div class="note-content">
-                    <div class="note-content-left">
-                        <div class="note-datepost">Postée le <br /><span class="note-date-post">2021-10-05</span></div>
-                        <div class="note-expediteur"> de:
-                            <img class="note-expediteur-img" src="https://picsum.photos/id/652/600/400" alt="">
-                            <br />
-                            <span class="note-expediteur-name">boss</span>
-                        </div>
-                        <div class="empty"></div>
-                        <div class="note-destinataire">pour :<img class="note-destinataire-img"
-                                src="https://picsum.photos/id/230/600/400" alt="">
-                            <br />
-                            <span class="note-destinataire-name">employé 1</span>
-                        </div>
-                    </div>
-                    <div class="note-content-right">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae
-                        suscipit rerum quibusdam earum, recusandae laborum dolores inventore, quis dolorum, rem
-                        veritatis libero necessitatibus repellendus soluta in natus commodi fugit quam! Lorem ipsum
-                        dolor sit amet consectetur adipisicing elit. Molestiae sit totam quasi impedit consequatur, sint
-                        cupiditate distinctio quaerat rerum, dolore esse iste voluptatibus aspernatur, voluptate
-                        Quo officia nemo magni, pariatur corporis sapiente. Repellendus, provident. </div>
-                </div>
-            </div>
-            <div id="note-0" class="note">
-                <div class="note-buttons">
-                    <div class="note-titre">Titre de la note</div>
-                    <div class="note-button"><img src="/img/unfold.png" alt=""><img src="/img/edit.png" alt=""><img src="/img/close.png" alt=""></div>
-
-                </div>
-                <div class="note-header">
-                    <div class="note-date">2021-10-05</div>
-                    <div class="empty">&nbsp;</div>
-                    <div class="note-priority">HIGH</div>
-                </div>
-                <div class="note-content">
-                    <div class="note-content-left">
-                        <div class="note-datepost">Postée le <br /><span class="note-date-post">2021-10-05</span></div>
-                        <div class="note-expediteur"> de:
-                            <img class="note-expediteur-img" src="https://picsum.photos/id/237/600/400" alt="">
-                            <br />
-                            <span class="note-expediteur-name">boss</span>
-                        </div>
-                        <div class="empty"></div>
-                        <div class="note-destinataire">pour :<img class="note-destinataire-img"
-                                src="https://picsum.photos/id/1025/600/400" alt="">
-                            <br />
-                            <span class="note-destinataire-name">employé 1</span>
-                        </div>
-                    </div>
-                    <div class="note-content-right">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae
-                        suscipit rerum quibusdam earum, recusandae laborum dolores inventore, quis dolorum, rem
-                        veritatis libero necessitatibus repellendus soluta in natus commodi fugit quam! Lorem ipsum
-                        dolor sit amet consectetur adipisicing elit. Molestiae sit totam quasi impedit consequatur, sint
-                        cupiditate distinctio quaerat rerum, dolore esse iste voluptatibus aspernatur, voluptate
-                        blanditiis consequuntur beatae ea suscipit. Lorem ipsum dolor sit amet consectetur adipisicing
-                        elit. Porro deserunt autem eveniet minima expedita eaque ut impedit aperiam repudiandae! Laborum
-                        ut suscipit ipsam nostrum quod beatae cum voluptatibus autem! Nobis. Lorem ipsum dolor sit, amet
-                        consectetur adipisicing elit. Dignissimos consectetur esse quod reprehenderit saepe id sequi
-                        tenetur. Suscipit numquam est sequi, earum alias magni officia mollitia! Natus, reprehenderit
-                        odio! Atque. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus accusantium
-                        dolor, ducimus ad magnam repellat laudantium, recusandae, dignissimos obcaecati pariatur autem!
-                        Quo officia nemo magni, pariatur corporis sapiente. Repellendus, provident. </div>
-                </div>
-            </div>
-            <div id="note-0" class="note">
-                <div class="note-buttons">
-                    <div class="note-titre">Titre de la note</div>
-                    <div class="note-button"><img src="/img/unfold.png" alt=""><img src="/img/edit.png" alt=""><img src="/img/close.png" alt=""></div>
-
-                </div>
-                <div class="note-header">
-                    <div class="note-date">2021-10-05</div>
-                    <div class="empty">&nbsp;</div>
-                    <div class="note-priority">HIGH</div>
-                </div>
-                <div class="note-content">
-                    <div class="note-content-left">
-                        <div class="note-datepost">Postée le <br /><span class="note-date-post">2021-10-05</span></div>
-                        <div class="note-expediteur"> de:
-                            <img class="note-expediteur-img" src="https://picsum.photos/id/237/600/400" alt="">
-                            <br />
-                            <span class="note-expediteur-name">boss</span>
-                        </div>
-                        <div class="empty"></div>
-                        <div class="note-destinataire">pour :<img class="note-destinataire-img"
-                                src="https://picsum.photos/id/1025/600/400" alt="">
-                            <br />
-                            <span class="note-destinataire-name">employé 1</span>
-                        </div>
-                    </div>
-                    <div class="note-content-right">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae
-                        suscipit rerum quibusdam earum, recusandae laborum dolores inventore, quis dolorum, rem
-                        veritatis libero necessitatibus repellendus soluta in natus commodi fugit quam! Lorem ipsum
-                        dolor sit amet consectetur adipisicing elit. Molestiae sit totam quasi impedit consequatur, sint
-                        cupiditate distinctio quaerat rerum, dolore esse iste voluptatibus aspernatur, voluptate
-                        blanditiis consequuntur beatae ea suscipit. Lorem ipsum dolor sit amet consectetur adipisicing
-                        elit. Porro deserunt autem eveniet minima expedita eaque ut impedit aperiam repudiandae! Laborum
-                        ut suscipit ipsam nostrum quod beatae cum voluptatibus autem! Nobis. Lorem ipsum dolor sit, amet
-                        consectetur adipisicing elit. Dignissimos consectetur esse quod reprehenderit saepe id sequi
-                        tenetur. Suscipit numquam est sequi, earum alias magni officia mollitia! Natus, reprehenderit
-                        odio! Atque. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus accusantium
-                        dolor, ducimus ad magnam repellat laudantium, recusandae, dignissimos obcaecati pariatur autem!
-                        Quo officia nemo magni, pariatur corporis sapiente. Repellendus, provident. </div>
-                </div>
-            </div>
-            <div id="note-0" class="note">
-                <div class="note-buttons">
-                    <div class="note-titre">Titre de la note</div>
-                    <div class="note-button"><img src="/img/unfold.png" alt=""><img src="/img/edit.png" alt=""><img src="/img/close.png" alt=""></div>
-
-                </div>
-                <div class="note-header">
-                    <div class="note-date">2021-10-05</div>
-                    <div class="empty">&nbsp;</div>
-                    <div class="note-priority">HIGH</div>
-                </div>
-                <div class="note-content">
-                    <div class="note-content-left">
-                        <div class="note-datepost">Postée le <br /><span class="note-date-post">2021-10-05</span></div>
-                        <div class="note-expediteur"> de:
-                            <img class="note-expediteur-img" src="https://picsum.photos/id/237/600/400" alt="">
-                            <br />
-                            <span class="note-expediteur-name">boss</span>
-                        </div>
-                        <div class="empty"></div>
-                        <div class="note-destinataire">pour :<img class="note-destinataire-img"
-                                src="https://picsum.photos/id/1025/600/400" alt="">
-                            <br />
-                            <span class="note-destinataire-name">employé 1</span>
-                        </div>
-                    </div>
-                    <div class="note-content-right">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae
-                        suscipit rerum quibusdam earum, recusandae laborum dolores inventore, quis dolorum, rem
-                        veritatis libero necessitatibus repellendus soluta in natus commodi fugit quam! Lorem ipsum
-                        dolor sit amet consectetur adipisicing elit. Molestiae sit totam quasi impedit consequatur, sint
-                        cupiditate distinctio quaerat rerum, dolore esse iste voluptatibus aspernatur, voluptate
-                        blanditiis consequuntur beatae ea suscipit. Lorem ipsum dolor sit amet consectetur adipisicing
-                        elit. Porro deserunt autem eveniet minima expedita eaque ut impedit aperiam repudiandae! Laborum
-                        ut suscipit ipsam nostrum quod beatae cum voluptatibus autem! Nobis. Lorem ipsum dolor sit, amet
-                        consectetur adipisicing elit. Dignissimos consectetur esse quod reprehenderit saepe id sequi
-                        tenetur. Suscipit numquam est sequi, earum alias magni officia mollitia! Natus, reprehenderit
-                        odio! Atque. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus accusantium
-                        dolor, ducimus ad magnam repellat laudantium, recusandae, dignissimos obcaecati pariatur autem!
-                        Quo officia nemo magni, pariatur corporis sapiente. Repellendus, provident. </div>
-                </div>
-            </div>
-            <div id="note-0" class="note">
-                <div class="note-buttons">
-                    <div class="note-titre">Titre de la note</div>
-                    <div class="note-button"><img src="/img/unfold.png" alt=""><img src="/img/edit.png" alt=""><img src="/img/close.png" alt=""></div>
-
-                </div>
-                <div class="note-header">
-                    <div class="note-date">2021-10-05</div>
-                    <div class="empty">&nbsp;</div>
-                    <div class="note-priority">HIGH</div>
-                </div>
-                <div class="note-content">
-                    <div class="note-content-left">
-                        <div class="note-datepost">Postée le <br /><span class="note-date-post">2021-10-05</span></div>
-                        <div class="note-expediteur"> de:
-                            <img class="note-expediteur-img" src="https://picsum.photos/id/237/600/400" alt="">
-                            <br />
-                            <span class="note-expediteur-name">boss</span>
-                        </div>
-                        <div class="empty"></div>
-                        <div class="note-destinataire">pour :<img class="note-destinataire-img"
-                                src="https://picsum.photos/id/1025/600/400" alt="">
-                            <br />
-                            <span class="note-destinataire-name">employé 1</span>
-                        </div>
-                    </div>
-                    <div class="note-content-right">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae
-                        suscipit rerum quibusdam earum, recusandae laborum dolores inventore, quis dolorum, rem
-                        veritatis libero necessitatibus repellendus soluta in natus commodi fugit quam! Lorem ipsum
-                        dolor sit amet consectetur adipisicing elit. Molestiae sit totam quasi impedit consequatur, sint
-                        cupiditate distinctio quaerat rerum, dolore esse iste voluptatibus aspernatur, voluptate
-                        blanditiis consequuntur beatae ea suscipit. Lorem ipsum dolor sit amet consectetur adipisicing
-                        elit. Porro deserunt autem eveniet minima expedita eaque ut impedit aperiam repudiandae! Laborum
-                        ut suscipit ipsam nostrum quod beatae cum voluptatibus autem! Nobis. Lorem ipsum dolor sit, amet
-                        consectetur adipisicing elit. Dignissimos consectetur esse quod reprehenderit saepe id sequi
-                        tenetur. Suscipit numquam est sequi, earum alias magni officia mollitia! Natus, reprehenderit
-                        odio! Atque. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus accusantium
-                        dolor, ducimus ad magnam repellat laudantium, recusandae, dignissimos obcaecati pariatur autem!
-                        Quo officia nemo magni, pariatur corporis sapiente. Repellendus, provident. </div>
-                </div>
-            </div>
-            <div id="note-0" class="note">
-                <div class="note-buttons">
-                    <div class="note-titre">Titre de la note</div>
-                    <div class="note-button"><img src="/img/unfold.png" alt=""><img src="/img/edit.png" alt=""><img src="/img/close.png" alt=""></div>
+                    <div class="note-button"><img src="/img/unfold.png" alt=""><img src="/img/edit.png" alt=""><img
+                            src="/img/close.png" alt=""></div>
 
                 </div>
                 <div class="note-header">
