@@ -6,42 +6,83 @@
 }
 #messages-list {
   width: 100vw;
-  flex-wrap: 1;
+  /* flex-wrap: 1; */
+  flex-flow: row wrap;
+  justify-content: center;
 }
 .note {
-  border: 1px solid black;
+  border: 2px solid white;
   max-width: 25%;
   margin-left: 15px;
-  padding:10px;
-  max-height: 250px;
+  /* padding:10px; */
+  height: 340px;
+  min-width: 20vw;
+  margin-bottom: 20px;
+  
 }
 .note-content-left img {
-  max-height: 100px;
-  width: 100px;
+  max-height: 80px;
+  width: 80px;
   size: auto;
 }
 .note-content-left {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  flex-wrap:wrap ;
 }
 .note-content-right{
     padding:10px;
     overflow-y: auto;
-    height: 190px;;
+    max-height: 230px;
 }
-.note-buttons .empty,
+ .empty,
 .note-titre {
   flex-grow: 1;
 }
 .note-titre {
-  text-align: center;
+  text-align:left;
+  font-size: 20px;
+  font-weight: 900;
+  vertical-align: middle;
 }
 .note-buttons img {
-  width: 48px;
-  height: 48px;
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
 }
 .note-buttons {
   text-align: right;
-  width: 100%;
+  /* width: 100%; */
+  border-bottom: 1px solid white;
+  background-color: blue;
+  padding : 4px 10px;
+}
+.note-header{
+  /* padding-top: 5px;
+  margin-bottom:15px; */
+  padding: 10px;
+}
+.note-date
+{
+  font-weight: 900;
+  font-style: italic;
+}
+.note-priority{
+    font-weight: 900;
+    font-size: larger;
+}
+.note-datepost{
+  /* margin-bottom: 20px; */
+}
+.note-content{
+  padding :0 10px
+}
+body{
+  background-image: url(../img/bg1.jpg);
+  color: white;
+  height: 100vh;
+  width:100vw;
 }
 #jsLoaded{
     background-color: tomato;
