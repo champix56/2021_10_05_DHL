@@ -81,8 +81,8 @@
 body{
   background-image: url(../img/bg1.jpg);
   color: white;
-  height: 100vh;
-  width:100vw;
+  height: 99vh;
+  width:100%;
 }
 .note{
   color:white;

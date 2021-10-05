@@ -44,3 +44,6 @@ select#form-dest option{
 .bdr{
     border-right: 1px solid white;
 }
+.btn.btn-primary{
+    background-color: skyblue;
+}
