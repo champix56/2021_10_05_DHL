@@ -30,7 +30,7 @@ form input,form select, form textarea{
 }
 .half>div{
     display: inline-block;
-    width:49%;
+    width:47%;
 }
 .top>div{
     vertical-align: top;
