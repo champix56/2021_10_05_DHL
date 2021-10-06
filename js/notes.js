@@ -12,6 +12,9 @@ var Note =function()
     this.priority='LOW';
     this.titre='';   
 }
+/**
+ * Objet de manipulation de liste de notes controller
+ */
 var Notes=function(){
     var _liste=[];
     /*
