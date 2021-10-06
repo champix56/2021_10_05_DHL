@@ -1,3 +1,7 @@
+body{
+  background-image: url(../img/bg2.jpg);
+  color:aliceblue
+}
 #messages-list,
 .note-content,
 .note-header,
