@@ -1,4 +1,4 @@
-#messages-list,
+/* #messages-list, */
 .note-content,
 .note-header,
 .note-buttons {
@@ -7,8 +7,9 @@
 #messages-list {
   width: 100vw;
   /* flex-wrap: 1; */
-  flex-flow: row wrap;
-  justify-content: center;
+  /* flex-flow: row wrap;
+  justify-content: center; */
+  text-align: center;
 }
 .note {
   border: 2px solid white;
@@ -18,6 +19,7 @@
   max-height: 340px;
   min-width: 20vw;
   margin-bottom: 20px;
+  display: inline-block;
   
 }
 .note-content-left img {
@@ -71,6 +73,7 @@
 .note-priority{
     font-weight: 900;
     font-size: larger;
+    padding : 0 15px;
 }
 .note-datepost{
   /* margin-bottom: 20px; */

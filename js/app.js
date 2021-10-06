@@ -14,4 +14,6 @@ function addNoteListeners(note){
         note.remove()
     });
 }
-addNoteListeners(document.querySelector('#note-0'))
+for (const iterator of document.querySelectorAll('.note')) {
+    addNoteListeners(iterator)
+}

@@ -19,13 +19,13 @@ form input,form select, form textarea{
 .option-priority{
     color:white;
 }
-.option-priority.high{
+.high{
     background-color: tomato;
 }
-.option-priority.low{
+.low{
     background-color: skyblue;
 }
-.option-priority.normal{
+.normal{
     background-color: darkgrey;
 }
 .half>div{
