@@ -44,3 +44,15 @@ function Note(exp,dest,desc,dateCrea,dateExe,titre,priority){
     }
 }
 var note=new Note('moi','toi','cdzszd');
+var note2=new Note('Le grand Duc','Roi','cdzszd');
+
+//surcharge de champs public de toutes les instance 
+Note.prototype.maValeur=1234;
+Note.prototype.showMavaleur=function(){
+    console.log(this.maValeur);
+};
+//disponible pour tt les instance s'appuyant sur l'objet Note
+note.showMavaleur();
+note.maValeur;
+note2.showMavaleur();
+note2.maValeur;
