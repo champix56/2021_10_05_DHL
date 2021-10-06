@@ -1,3 +1,6 @@
+/**
+ * Objet de conteneur de datas pour une note unique
+ */
 var Note =function()
 {
     this.id=undefined;
