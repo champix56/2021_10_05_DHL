@@ -15,10 +15,11 @@ var Notes=function(){
     */
     /**
      * push dans l'array
-     * @param {Object} obj objet a pousser dans la liste
+     * @param {Note} obj objet a pousser dans la liste
      * @returns {number} length de la liste apres push
      */
     this.push=function(o){
+        //controlle de l'instance du parametre dentree
         if(o instanceof Note)
         {
             return _liste.push(o);
