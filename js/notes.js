@@ -1,5 +1,6 @@
 var Note =function()
 {
+    this.id=undefined;
     this.destinataire='';
     this.expediteur='';
     this.description='';
