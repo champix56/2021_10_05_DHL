@@ -1,5 +1,15 @@
-function Note(){
-    var _exp,_dest,_desc,_dateCrea,_dateExe,_titre,_priority;
+/**
+ * Object Note
+ * @param {string} exp expediteur
+ * @param {string} dest destinataire
+ * @param {string} desc description de la note
+ * @param {string} dateCrea date de creation
+ * @param {string} dateExe date cible de la note
+ * @param {string} titre titre de la note
+ * @param {string} priority priorité de la note
+ */
+function Note(exp,dest,desc,dateCrea,dateExe,titre,priority){
+    var _exp=exp,_dest=dest,_desc=desc,_dateCrea=dateCrea,_dateExe=dateExe,_titre=titre,_priority=priority;
     /**
      * maj du titre de la note
      * @param {string} titre 
@@ -12,7 +22,7 @@ function Note(){
     //declaration public d'une fonction
     this.setPriority=function(priority){
         _priority=priority;
-    }
+    };
     //getter
     this.getExpediteur=function(){
         return _exp;
@@ -29,4 +39,4 @@ function Note(){
         return '{"expediteur":"'+_exp+'", "dest":"'+_dest+'", "desc":"'+_desc+'", "titre":"'+_titre+'", "priority":"'+_priority+'"}';
     }
 }
-var note=new Note();
+var note=new Note('moi','toi','cdzszd');
