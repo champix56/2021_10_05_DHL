@@ -27,6 +27,11 @@ var Notes=function(){
         else return _liste.length;
     }
 
+    /**
+     * fonction de recherche d'une note en fonction du titre
+     * @param {string} titre titre absolue de la note a chercher 
+     * @returns {Note|null} note trouvée ou null si pas dans la liste 
+     */
     this.find=function(titre){
        return _liste.find(function(elementDeListe){
             return elementDeListe.titre===titre
