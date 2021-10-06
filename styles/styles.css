@@ -14,8 +14,8 @@
   border: 2px solid white;
   max-width: 25%;
   margin-left: 15px;
-  /* padding:10px; */
-  height: 340px;
+  padding-bottom:10px;
+  max-height: 340px;
   min-width: 20vw;
   margin-bottom: 20px;
   
@@ -79,7 +79,7 @@
   padding :0 10px
 }
 body{
-  background-image: url(../img/bg1.jpg);
+  background-image: url(../img/bg2.jpg);
   color: white;
   height: 99vh;
   width:100%;
