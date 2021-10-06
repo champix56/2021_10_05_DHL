@@ -1,58 +1,42 @@
-/**
- * Object Note
- * @param {string} exp expediteur
- * @param {string} dest destinataire
- * @param {string} desc description de la note
- * @param {string} dateCrea date de creation
- * @param {string} dateExe date cible de la note
- * @param {string} titre titre de la note
- * @param {string} priority priorité de la note
- */
-function Note(exp,dest,desc,dateCrea,dateExe,titre,priority){
-    var _exp=exp,_desc=desc,_dateCrea=dateCrea,_dateExe=dateExe,_titre=titre,_priority=priority;
+var Note =function()
+{
+    this.destinataire='';
+    this.expediteur='';
+    this.description='';
+    this.dateCreat=new Date();
+    this.dateCible=new Date();
+    this.priority='LOW';
+    this.titre='';   
+}
+var Notes=function(){
+    var _liste=[];
+    /*
+    this.push=_liste.push;
+    */
     /**
-     * maj du titre de la note
-     * @param {string} titre 
+     * push dans l'array
+     * @param {Object} obj objet a pousser dans la liste
+     * @returns {number} length de la liste apres push
      */
-    function _updateTitre(titre){
-        _titre=titre;
+    this.push=function(o){
+        if(o instanceof Note)
+        {
+            return _liste.push(o);
+        }
+        else return _liste.length;
     }
-    //exposition pubilc d'une fonction privée
-    this.setTitre=_updateTitre;
-    //declaration public d'une fonction
-    this.setPriority=function(priority){
-        _priority=priority;
-    };
-    //getter
-    this.getExpediteur=function(){
-        return _exp;
-    };
-    //setter
-    this.setExpediteur=function(exp){
-        _exp=exp;
-    };
-    //moddif d'un champs public depuis l'interrieurde l'instance de l'objet
-    this.AddCiviliteToDestinataire=function(civ){
 
-        this.destinataire=civ+' '+this.destinataire;
+    this.find=function(titre){
+       return _liste.find(function(elementDeListe){
+            return elementDeListe.titre===titre
+        });
     }
-    //moddif. et lecture depuis l'exterieur controle
-    this.destinataire=dest;
-    
-    this.toJson=function(){
-        return '{"expediteur":"'+_exp+'", "dest":"'+_dest+'", "desc":"'+_desc+'", "titre":"'+_titre+'", "priority":"'+_priority+'"}';
+    /**
+     * Fonction de recuperation d'un element
+     * @param {number} index position dans la liste
+     */
+    this.get=function(index){
+        return _liste[index];
     }
 }
-var note=new Note('moi','toi','cdzszd');
-var note2=new Note('Le grand Duc','Roi','cdzszd');
-
-//surcharge de champs public de toutes les instance 
-Note.prototype.maValeur=1234;
-Note.prototype.showMavaleur=function(){
-    console.log(this.maValeur);
-};
-//disponible pour tt les instance s'appuyant sur l'objet Note
-note.showMavaleur();
-note.maValeur;
-note2.showMavaleur();
-note2.maValeur;
+var notes = new Notes();
