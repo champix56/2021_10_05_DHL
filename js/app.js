@@ -3,7 +3,19 @@ var restCrud = new CRUD(REST_SERVER_ADR);
  * instance de tableau de users
  */
 var users = [];
-function initUsers(callback) {}
+function initUsers(callback) {
+    restCrud.GET(function (resp) {
+        var liste=JSON.parse(resp);
+        liste.forEach(function(e,i){
+            users.push(new User(e.name,e.img,e.id));
+        })
+        console.log(users);
+        if (callback) {
+          callback();
+        }
+      }, "/users");
+}
+initUsers();
 /**
  * instance de manager des notes
  */
