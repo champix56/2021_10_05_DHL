@@ -11,14 +11,17 @@
     this.dateCible=moment().format('YYYY-MM-DDTHH:MM');
     this.priority='LOW';
     this.titre='';
-    this.getRestJsonString(){
+    this.toRestobj=function(){
         var o=JSON.parse(JSON.stringify(this));
         o.expediteurId=o.expediteur.getId();
         o.destinataireId=o.destinataire?o.destinataire.getId():-1;
 
         delete o.destinataire;
         delete o.expediteur;
-        return JSON.stringify(o);
+        return o;
+    }
+    this.toRestJsonString=function(){
+        return JSON.stringify(this.toRestobj());
     }   
 }
 /**
