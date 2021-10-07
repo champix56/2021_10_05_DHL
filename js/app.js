@@ -1,5 +1,28 @@
+var restCrud = new CRUD(REST_SERVER_ADR);
+/**
+ * instance de tableau de users
+ */
+var users = [];
+function initUsers(callback) {}
+/**
+ * instance de manager des notes
+ */
 var notes = new Notes();
-
+function initNotes(callback) {}
+/**
+ * model textuel html d'une note
+ */
+var noteModel = null;
+function initModel(callback) {
+  var crud = new CRUD(VIEW_DIRECTORY);
+  crud.GET(function (resp) {
+    noteModel = '<div id="note-" class="note">' + resp + "</div>";
+    console.log(noteModel);
+    if (callback) {
+      callback();
+    }
+  }, "/note.html");
+}
 /**
  * fonction d'init de notre app bloc note
  */
@@ -65,10 +88,14 @@ function createElementNote(note) {
   element.querySelector(".note-priority").innerHTML = note.priority;
   element.querySelector(".note-expediteur-name").innerHTML = note.expediteur;
 
-  element.querySelector(".note-destinataire-name").innerHTML = (note.destinataire?destinataire.name:'tout le monde');
+  element.querySelector(".note-destinataire-name").innerHTML = note.destinataire
+    ? destinataire.name
+    : "tout le monde";
 
   //udt de la source de limage
-  element.querySelector(".note-destinataire-img").src = (note.destinataire?destinataire.img:'/img/robot.png');
+  element.querySelector(".note-destinataire-img").src = note.destinataire
+    ? destinataire.img
+    : "/img/robot.png";
 
   element.querySelector(".note-content-right").innerHTML = note.description;
   element.querySelector(".note-date-post").innerHTML = note.dateCible;
@@ -78,37 +105,7 @@ function createElementNote(note) {
   //retour de l'element completement rempli
   return element;
 }
-/**
- * model textuel html d'une note
- */
-var noteModel =
-  '\
-    <div class="note-buttons">\
-        <div class="empty"></div>\
-        <img src="/img/fold.png" alt="" class="note-toggle">\
-        <img src="/img/edit.png" alt="" class="note-edit">\
-        <img src="/img/close.png" alt="" class="note-close">\
-    </div>\
-    <div class="note-header">\
-        <div class="note-date"></div>\
-        <div class="note-titre"></div>\
-        <div class="note-priority"></div>\
-    </div>\
-    <div class="note-content">\
-        <div class="note-content-left">\
-            <div class="note-expediteur">\
-                <img class="note-expediteur-img" src="" alt="">\
-                <br/>\
-                /<span class="note-expediteur-name"></span>\
-            </div>\
-            <div class="note-datepost">Postée le <br><span class="note-date-post"></span></div>\
-            <div class="note-destinataire"><img class="note-destinataire-img" src="" alt="">\
-                <br/>\
-                /<span class="note-destinataire-name"></span>\
-            </div>\
-        </div>\
-        <div class="note-content-right"></div>\
-</div>';
+
 /**
  * initialisation du select pour les destinataire
  * @param {Array} users liste des users a charger
