@@ -2,7 +2,7 @@ body{
   background-image: url(../img/bg2.jpg);
   color:aliceblue
 }
-#messages-list,
+/* #messages-list, */
 .note-content,
 .note-header,
 .note-buttons {
@@ -10,14 +10,16 @@ body{
 }
 #messages-list {
   width: 100vw;
-  flex-wrap: 1;
+  /* flex-wrap: 1; */
 }
 .note {
   border: 1px solid black;
   max-width: 25%;
   margin-left: 15px;
-  padding:10px;
+  /* padding:10px; */
   max-height: 250px;
+  min-width:18%;
+  display: inline-block;
 }
 .note-content-left img {
   max-height: 100px;
@@ -40,12 +42,13 @@ body{
   text-align: center;
 }
 .note-buttons img {
-  width: 48px;
-  height: 48px;
+  width: 24px;
+  height: 24px;
 }
 .note-buttons {
   text-align: right;
   width: 100%;
+  background-color: blue;
 }
 #jsLoaded{
     background-color: tomato;
