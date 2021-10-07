@@ -1,30 +1,13 @@
-var notes=new Notes();
-/* creation d'une liste de note remplis avec des valeurs par defult pour toutes les notes ajoutées*/
-var n=new Note();
-n.titre='demat breizh';
-n.description="oh breizh ma bro";
-notes.push(n);
-notes.push(new Note());
-notes.push(new Note());
-notes.push(new Note());
-notes.push(new Note());
-notes.push(new Note());
-notes.push(new Note());
-
 /**
  * fonction d'init de notre app bloc note
  */
 function init() {
   //corps de declaration
-  // document.getElementById('jsLoaded').remove();
+   document.getElementById('jsLoaded').remove();
 
-  var jsl = document.getElementById("jsLoaded");
-  jsl.style.backgroundColor = "skyblue";
-  jsl.innerHTML = "Js bien chargé";
-  
-  
-  var note0 = document.querySelector("#note-0");
-  addNoteEvent(note0);
+  //var jsl = document.getElementById("jsLoaded");
+  //jsl.style.backgroundColor = "skyblue";
+  //jsl.innerHTML = "Js bien chargé";
 }
 
 init();
