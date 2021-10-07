@@ -104,6 +104,8 @@ function addNoteEvent(note) {
   closeButton.addEventListener("click", function (evt) {
     note.remove();
   });
+
+  note.querySelector(".note-toggle").addEventListener("click",onfoldnoteclicked);
 }
 
 function refreshListMessages() {
@@ -222,4 +224,16 @@ function onsubmitnote(evt) {
  */
 function onchangevalue(evt) {
   evt.target.classList.remove("invalid");
+}
+
+function onfoldnoteclicked(evt){
+  var content=evt.target.parentElement.parentElement.querySelector('.note-content');
+  if(content.style.display=='none'){
+      content.style.display='flex';
+      evt.target.src='./img/fold.png';
+  }
+  else {
+    content.style.display='none';
+      evt.target.src='./img/unfold.png';
+  }
 }
