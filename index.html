@@ -26,7 +26,7 @@
                         </label>
                         <br />
                         <input placeholder="saisir titre" type="text" name="form-title" id="form-title"
-                            style="width:80%;margin-left: auto;margin-right: auto;">
+                            style="width:80%;margin-left: auto;margin-right: auto;" pattern="\w{2,}">
                     </div>
                     <hr />
                     <div class="half top">
@@ -48,8 +48,8 @@
                                 </div>
                             </div>
                             <div class="half">
-                                <div>date :<br /><input type="date" name="form-date" id="form-date"></div>
-                                <div>heure :<br /><input type="time" name="form-time" id="form-time"></div>
+                                <div>date :<br /><input type="date" name="form-date" id="form-date" required="required"></div>
+                                <div>heure :<br /><input type="time" name="form-time" id="form-time" required="required"></div>
                             </div>
                         </div>
                         <div class="bdl" style="padding:0 12px ;">
@@ -142,9 +142,10 @@
             </div>
         </div>
     </div>
-    <script src="js/users.js"></script>
-    <script src="js/notes.js"></script>
-    <script src="js/app.js"></script>
+    <script src="/lib/moment.js"></script>
+    <script src="/js/users.js"></script>
+    <script src="/js/notes.js"></script>
+    <script src="/js/app.js"></script>
 </body>
 
 </html>
