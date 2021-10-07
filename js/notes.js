@@ -51,5 +51,5 @@ var Notes=function(){
     this.get=function(index){
         return _liste[index];
     }
-    this.length=_liste.length;
+    this.length=function(){return _liste.length;}
 }
