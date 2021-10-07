@@ -4,7 +4,8 @@
   "description": "cours DHL inter Orsys",
   "main": "index.js",
   "scripts": {
-    "start": "lite-server"
+    "start": "lite-server",
+    "json":"json-server -p 5679 db/db.json"
   },
   "repository": {
     "type": "git",
