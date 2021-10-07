@@ -10,7 +10,16 @@
     this.dateCreat=moment().format('YYYY-MM-DDTHH:MM');
     this.dateCible=moment().format('YYYY-MM-DDTHH:MM');
     this.priority='LOW';
-    this.titre='';   
+    this.titre='';
+    this.getRestJsonString(){
+        var o=JSON.parse(JSON.stringify(this));
+        o.expediteurId=o.expediteur.getId();
+        o.destinataireId=o.destinataire?o.destinataire.getId():-1;
+
+        delete o.destinataire;
+        delete o.expediteur;
+        return JSON.stringify(o);
+    }   
 }
 /**
  * Objet de manipulation de liste de notes controller
