@@ -1,14 +1,14 @@
 /**
  * Objet de conteneur de datas pour une note unique
  */
-var Note =function()
+ var Note =function()
 {
     this.id=undefined;
     this.destinataire='';
     this.expediteur='';
     this.description='';
-    this.dateCreat=new Date();
-    this.dateCible=new Date();
+    this.dateCreat=moment().format('YYYY-MM-DDTHH:MM');
+    this.dateCible=moment().format('YYYY-MM-DDTHH:MM');
     this.priority='LOW';
     this.titre='';   
 }
