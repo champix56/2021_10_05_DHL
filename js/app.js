@@ -20,7 +20,31 @@ initUsers();
  * instance de manager des notes
  */
 var notes = new Notes();
-function initNotes(callback) {}
+function initNotes(callback) {
+    restCrud.GET(function (resp) {
+        var liste=JSON.parse(resp);
+        liste.forEach(function(e,i){
+            var n=new Note();
+            n.id=e.id;
+            n.titre=e.titre;
+            n.description=e.description;
+            n.priority=e.priority;
+
+            n.dateCible=e.dateCible;
+            n.dateCreat=e.dateCreat;
+
+            n.destinataire=users.find(u=>u.getId()===e.destinataireId);
+            n.expediteur=users.find(u=>u.getId()===e.expediteurId);
+
+            notes.push(n);
+        })
+        console.log(notes);
+        if (callback) {
+          callback();
+        }
+      }, "/notes");
+}
+initNotes();
 /**
  * model textuel html d'une note
  */
