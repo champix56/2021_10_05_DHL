@@ -15,7 +15,6 @@ function initUsers(callback) {
         }
       }, "/users");
 }
-initUsers();
 /**
  * instance de manager des notes
  */
@@ -44,7 +43,6 @@ function initNotes(callback) {
         }
       }, "/notes");
 }
-initNotes();
 /**
  * model textuel html d'une note
  */
@@ -52,12 +50,27 @@ var noteModel = null;
 function initModel(callback) {
   var crud = new CRUD(VIEW_DIRECTORY);
   crud.GET(function (resp) {
-    noteModel = '<div id="note-" class="note">' + resp + "</div>";
+    noteModel =  resp;
     console.log(noteModel);
     if (callback) {
       callback();
     }
   }, "/note.html");
+}
+function initBaseDatas(){
+  //chargement du model d'une note (dependance principale d'affichage)
+  initModel(function(){
+    //chargement des users (dependance des notes)
+    initUsers(function(){
+      //initialisation du select pour les users en fonction de la liste chargee
+      initSelectUsers(users);
+      //chargement des notes avec corelation des destinataires (User) et expediteir (User) respectifs
+      initNotes(function(){
+        // affichage de toutes les notes grace au model de note
+        refreshListMessages();
+      })
+    })
+  })
 }
 /**
  * fonction d'init de notre app bloc note
@@ -70,14 +83,13 @@ function init() {
   jsl.style.backgroundColor = "skyblue";
   jsl.innerHTML = "Js bien chargé";
 
-  initSelectUsers(users);
+  // initSelectUsers(users);
+  //necessite le chargement initial des users 
+  //fait dans initBaseDatas
+  initBaseDatas();
   document.querySelector("form").addEventListener("submit", onsubmitnote);
-  document
-    .querySelector("#form-title")
-    .addEventListener("change", onchangevalue);
-  document
-    .querySelector("#form-desc")
-    .addEventListener("change", onchangevalue);
+  document.querySelector("#form-title").addEventListener("change", onchangevalue);
+  document.querySelector("#form-desc").addEventListener("change", onchangevalue);
 }
 
 init();
@@ -122,15 +134,16 @@ function createElementNote(note) {
   element.querySelector(".note-date").innerHTML = note.dateCreat;
   element.querySelector(".note-titre").innerHTML = note.titre;
   element.querySelector(".note-priority").innerHTML = note.priority;
-  element.querySelector(".note-expediteur-name").innerHTML = note.expediteur;
+  element.querySelector(".note-expediteur-name").innerHTML = note.expediteur.name;
+  element.querySelector(".note-expediteur-img").src = note.expediteur.img;
 
   element.querySelector(".note-destinataire-name").innerHTML = note.destinataire
-    ? destinataire.name
+    ? note.destinataire.name
     : "tout le monde";
 
   //udt de la source de limage
   element.querySelector(".note-destinataire-img").src = note.destinataire
-    ? destinataire.img
+    ? note.destinataire.img
     : "/img/robot.png";
 
   element.querySelector(".note-content-right").innerHTML = note.description;
