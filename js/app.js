@@ -1,15 +1,4 @@
 var notes = new Notes();
-/* creation d'une liste de note remplis avec des valeurs par defult pour toutes les notes ajoutées*/
-var n = new Note();
-n.titre = "demat breizh";
-n.description = "oh breizh ma bro";
-notes.push(n);
-notes.push(new Note());
-notes.push(new Note());
-notes.push(new Note());
-notes.push(new Note());
-notes.push(new Note());
-notes.push(new Note());
 
 /**
  * fonction d'init de notre app bloc note
@@ -24,6 +13,9 @@ function init() {
 
   initSelectUsers(users);
   document.querySelector("form").addEventListener("submit", onsubmitnote);
+  document.querySelector("#form-title").addEventListener("change", onchangevalue);
+  document.querySelector("#form-desc").addEventListener("change", onchangevalue);
+
 }
 
 init();
@@ -69,10 +61,11 @@ function createElementNote(note) {
   element.querySelector(".note-titre").innerHTML = note.titre;
   element.querySelector(".note-priority").innerHTML = note.priority;
   element.querySelector(".note-expediteur-name").innerHTML = note.expediteur;
-  element.querySelector(".note-destinataire-name").innerHTML =note.destinataire.name;
+  element.querySelector(".note-destinataire-name").innerHTML =
+    note.destinataire.name;
   //udt de la source de limage
-  element.querySelector(".note-destinataire-img").src =note.destinataire.img;
-    
+  element.querySelector(".note-destinataire-img").src = note.destinataire.img;
+
   element.querySelector(".note-content-right").innerHTML = note.description;
   element.querySelector(".note-date-post").innerHTML = note.dateCible;
 
@@ -140,21 +133,42 @@ function initSelectUsers(users) {
  */
 function onsubmitnote(evt) {
   evt.preventDefault();
+  var auMoinsUnChampsInvalid = false;
   //pas interessant dans notre cas de submit car pas de declenchement en cascade de "submit"
   //evt.stopPropagation();
   console.log(evt.target, evt);
   var note = new Note();
-  note.description = evt.target["form-desc"].value;
+  if (evt.target["form-title"].value.length <= 2) {
+    evt.target["form-title"].classList.add("invalid");
+    auMoinsUnChampsInvalid = true;
+  }
   note.titre = evt.target["form-title"].value;
 
+  if (evt.target["form-desc"].value.length <= 2) {
+    evt.target["form-desc"].classList.add("invalid");
+    auMoinsUnChampsInvalid = true;
+  }
+  note.description = evt.target["form-desc"].value;
+
+  note.priority = evt.target["form-priority"].value;
   //correlation des info d'unuser en fonction de la selection
   var destinataire = users.find(function (unUserDuTableau) {
     return unUserDuTableau.getId() === Number(evt.target["form-dest"].value);
   });
   note.destinataire = destinataire;
-  
-  note.dateCible =
-    evt.target["form-date"].value + "T" + evt.target["form-time"].value;
+
+  note.dateCible =evt.target["form-date"].value + "T" + evt.target["form-time"].value;
+  //lib de formatage et parsing de date / time
+  note.dateCreat=moment().format('YYYY-MM-DDTHH:MM');
   console.log(note);
-  document.querySelector("#messages-list").append(createElementNote(note));
+  if (!auMoinsUnChampsInvalid) {
+    document.querySelector("#messages-list").append(createElementNote(note));
+  }
+}
+/**
+ * fonction de suppression d'invalid class lors d'un change
+ * @params {InputEvent} evt event declencheur
+ */
+function onchangevalue(evt) {
+        evt.target.classList.remove('invalid');
 }

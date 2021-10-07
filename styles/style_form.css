@@ -47,3 +47,7 @@ select#form-dest option{
 .btn.btn-primary{
     background-color: skyblue;
 }
+input.invalid, textarea.invalid{
+    background-color: tomato;
+    color:white;
+}
