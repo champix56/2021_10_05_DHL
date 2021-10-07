@@ -23,6 +23,7 @@ function init() {
   jsl.innerHTML = "Js bien chargé";
 
   initSelectUsers(users);
+  document.querySelector("form").addEventListener("submit", onsubmitnote);
 }
 
 init();
@@ -68,8 +69,10 @@ function createElementNote(note) {
   element.querySelector(".note-titre").innerHTML = note.titre;
   element.querySelector(".note-priority").innerHTML = note.priority;
   element.querySelector(".note-expediteur-name").innerHTML = note.expediteur;
-  element.querySelector(".note-destinataire-name").innerHTML =
-    note.destinataire;
+  element.querySelector(".note-destinataire-name").innerHTML =note.destinataire.name;
+  //udt de la source de limage
+  element.querySelector(".note-destinataire-img").src =note.destinataire.img;
+    
   element.querySelector(".note-content-right").innerHTML = note.description;
   element.querySelector(".note-date-post").innerHTML = note.dateCible;
 
@@ -129,4 +132,29 @@ function initSelectUsers(users) {
     opt.innerHTML = user.name;
     selectDest.append(opt);
   });
+}
+
+/**
+ * fonction de soumission du formulaire d'une note
+ * @param {SubmitEvent} evt evenement qui a declencher la fonction
+ */
+function onsubmitnote(evt) {
+  evt.preventDefault();
+  //pas interessant dans notre cas de submit car pas de declenchement en cascade de "submit"
+  //evt.stopPropagation();
+  console.log(evt.target, evt);
+  var note = new Note();
+  note.description = evt.target["form-desc"].value;
+  note.titre = evt.target["form-title"].value;
+
+  //correlation des info d'unuser en fonction de la selection
+  var destinataire = users.find(function (unUserDuTableau) {
+    return unUserDuTableau.getId() === Number(evt.target["form-dest"].value);
+  });
+  note.destinataire = destinataire;
+  
+  note.dateCible =
+    evt.target["form-date"].value + "T" + evt.target["form-time"].value;
+  console.log(note);
+  document.querySelector("#messages-list").append(createElementNote(note));
 }
