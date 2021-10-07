@@ -59,6 +59,3 @@ var CRUD = function (RestAdress) {
     _xhrCall(callback,'POST', ressourceName, undefined, JSON.stringify(obj));
   };
 };
-var crud=new CRUD(REST_SERVER_ADR);
-// crud.GET(function(resp){console.log(resp);},'/notes');
-// crud.GET(function(resp){console.log(resp);},'/notes',0);
