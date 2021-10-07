@@ -14,5 +14,7 @@ var User=function (name,img,id) {
         return _id;
     }
 }
-var user=new User('pierre','/img/');
-var user2=new User('pierre','/img/',2);
+var users=[];
+users.push(new User('pierre','/img/',2));
+users.push(new User('paul','/img/',3));
+users.push(new User('jacques','/img/',1));

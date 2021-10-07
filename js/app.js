@@ -1,8 +1,8 @@
-var notes=new Notes();
+var notes = new Notes();
 /* creation d'une liste de note remplis avec des valeurs par defult pour toutes les notes ajoutées*/
-var n=new Note();
-n.titre='demat breizh';
-n.description="oh breizh ma bro";
+var n = new Note();
+n.titre = "demat breizh";
+n.description = "oh breizh ma bro";
 notes.push(n);
 notes.push(new Note());
 notes.push(new Note());
@@ -21,14 +21,11 @@ function init() {
   var jsl = document.getElementById("jsLoaded");
   jsl.style.backgroundColor = "skyblue";
   jsl.innerHTML = "Js bien chargé";
-  
-  
-  var note0 = document.querySelector("#note-0");
-  addNoteEvent(note0);
+
+  initSelectUsers(users);
 }
 
 init();
-
 
 /**
  * Fonction d'ajout des evenements d'une note
@@ -43,48 +40,49 @@ function addNoteEvent(note) {
 }
 
 function refreshListMessages() {
-var listDOM=document.querySelector('#messages-list');
-listDOM.innerHTML="";
+  var listDOM = document.querySelector("#messages-list");
+  listDOM.innerHTML = "";
 
-    for(var i=0;i<notes.length();i++){
-        var e=createElementNote(notes.get(i))
-        listDOM.append(e);
-    }
+  for (var i = 0; i < notes.length(); i++) {
+    var e = createElementNote(notes.get(i));
+    listDOM.append(e);
+  }
 }
 /**
  * creation d'un html Element a partir des datas d'un note
  * @param {Note} note instance d'objet note pour la creation DOM d'une note
  * @returns {HTMLElement} element div constitué du contenu d'une note
  */
-function createElementNote(note)
-{
-    //verif. que note est bien une 'Note' sinon retour null, creation impossible
-    if(!(note instanceof Note)) return null;
+function createElementNote(note) {
+  //verif. que note est bien une 'Note' sinon retour null, creation impossible
+  if (!(note instanceof Note)) return null;
 
-    //creation du conteneur div principale pour une note a partir d'un model
-    var element=document.createElement('div');
-    element.className="note";
-    element.id='note-'+note.id;
-    element.innerHTML=noteModel;
+  //creation du conteneur div principale pour une note a partir d'un model
+  var element = document.createElement("div");
+  element.className = "note";
+  element.id = "note-" + note.id;
+  element.innerHTML = noteModel;
 
-    //remplissage des valeurs d'une note passée en parametre de la fonction
-    element.querySelector('.note-date').innerHTML=note.dateCreat;
-    element.querySelector('.note-titre').innerHTML=note.titre;
-    element.querySelector('.note-priority').innerHTML=note.priority;
-    element.querySelector('.note-expediteur-name').innerHTML=note.expediteur;
-    element.querySelector('.note-destinataire-name').innerHTML=note.destinataire;
-    element.querySelector('.note-content-right').innerHTML=note.description;
-    element.querySelector('.note-date-post').innerHTML=note.dateCible;
-    
-    //mise en place des event pour cette element
-    addNoteEvent(element);
-    //retour de l'element completement rempli
-    return element;
+  //remplissage des valeurs d'une note passée en parametre de la fonction
+  element.querySelector(".note-date").innerHTML = note.dateCreat;
+  element.querySelector(".note-titre").innerHTML = note.titre;
+  element.querySelector(".note-priority").innerHTML = note.priority;
+  element.querySelector(".note-expediteur-name").innerHTML = note.expediteur;
+  element.querySelector(".note-destinataire-name").innerHTML =
+    note.destinataire;
+  element.querySelector(".note-content-right").innerHTML = note.description;
+  element.querySelector(".note-date-post").innerHTML = note.dateCible;
+
+  //mise en place des event pour cette element
+  addNoteEvent(element);
+  //retour de l'element completement rempli
+  return element;
 }
 /**
- * model textuel html d'une note 
+ * model textuel html d'une note
  */
-var noteModel='\
+var noteModel =
+  '\
     <div class="note-buttons">\
         <div class="empty"></div>\
         <img src="/img/fold.png" alt="" class="note-toggle">\
@@ -111,8 +109,24 @@ var noteModel='\
         </div>\
         <div class="note-content-right"></div>\
 </div>';
-
-
-
-
-
+/**
+ * initialisation du select pour les destinataire
+ * @param {Array} users liste des users a charger
+ */
+function initSelectUsers(users) {
+  var selectDest = document.querySelector("#form-dest");
+  //vidange avec function es6 et preservation de l'option avec value a -1
+  var children = selectDest.querySelectorAll("*");
+  children.forEach((opt, i) => {
+    if (opt.value !== "-1") {
+      opt.remove();
+    }
+  });
+  //remplissage
+  users.forEach(function (user, i) {
+    var opt = document.createElement("option");
+    opt.value = user.getId();
+    opt.innerHTML = user.name;
+    selectDest.append(opt);
+  });
+}
