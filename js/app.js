@@ -13,9 +13,12 @@ function init() {
 
   initSelectUsers(users);
   document.querySelector("form").addEventListener("submit", onsubmitnote);
-  document.querySelector("#form-title").addEventListener("change", onchangevalue);
-  document.querySelector("#form-desc").addEventListener("change", onchangevalue);
-
+  document
+    .querySelector("#form-title")
+    .addEventListener("change", onchangevalue);
+  document
+    .querySelector("#form-desc")
+    .addEventListener("change", onchangevalue);
 }
 
 init();
@@ -61,10 +64,11 @@ function createElementNote(note) {
   element.querySelector(".note-titre").innerHTML = note.titre;
   element.querySelector(".note-priority").innerHTML = note.priority;
   element.querySelector(".note-expediteur-name").innerHTML = note.expediteur;
-  element.querySelector(".note-destinataire-name").innerHTML =
-    note.destinataire.name;
+
+  element.querySelector(".note-destinataire-name").innerHTML = (note.destinataire?destinataire.name:'tout le monde');
+
   //udt de la source de limage
-  element.querySelector(".note-destinataire-img").src = note.destinataire.img;
+  element.querySelector(".note-destinataire-img").src = (note.destinataire?destinataire.img:'/img/robot.png');
 
   element.querySelector(".note-content-right").innerHTML = note.description;
   element.querySelector(".note-date-post").innerHTML = note.dateCible;
@@ -157,9 +161,10 @@ function onsubmitnote(evt) {
   });
   note.destinataire = destinataire;
 
-  note.dateCible =evt.target["form-date"].value + "T" + evt.target["form-time"].value;
+  note.dateCible =
+    evt.target["form-date"].value + "T" + evt.target["form-time"].value;
   //lib de formatage et parsing de date / time
-  note.dateCreat=moment().format('YYYY-MM-DDTHH:MM');
+  note.dateCreat = moment().format("YYYY-MM-DDTHH:MM");
   console.log(note);
   if (!auMoinsUnChampsInvalid) {
     document.querySelector("#messages-list").append(createElementNote(note));
@@ -170,5 +175,5 @@ function onsubmitnote(evt) {
  * @params {InputEvent} evt event declencheur
  */
 function onchangevalue(evt) {
-        evt.target.classList.remove('invalid');
+  evt.target.classList.remove("invalid");
 }
