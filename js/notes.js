@@ -4,10 +4,10 @@
 var Note =function()
 {
     this.id=undefined;
-    this.destinataire='';
+    this.destinataire={id:1,userName:'Moi',img:''};
     this.expediteur='';
     this.description='';
-    this.dateCreat=new Date();
+    this.dateCreat=moment().format('YYYY-MM-DDTHH:mm:ss');
     this.dateCible=new Date();
     this.priority='LOW';
     this.titre='';   
