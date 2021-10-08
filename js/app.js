@@ -4,6 +4,18 @@ var restCrud=new CRUD(REST_SERVER_ADR);
  */
 var noteModel =undefined;
 var users=[];
+function initUsersData() {
+  restCrud.GET(function(resp){
+    var us=JSON.parse(resp);
+    console.log(resp);
+    us.forEach(function(unUserDeListe){
+      users.push(new User(unUserDeListe.name,unUserDeListe.img,unUserDeListe.id));
+    });
+    initSelectUsers(users);
+    console.log(users);
+  },'/users');
+}
+initUsersData();
 var notes = new Notes();
 
 /**
@@ -17,7 +29,7 @@ function init() {
   jsl.style.backgroundColor = "skyblue";
   jsl.innerHTML = "Js bien chargé";
 
-  initSelectUsers(users);
+
   document.querySelector("form").addEventListener("submit", onsubmitnote);
   document
     .querySelector("#form-title")
