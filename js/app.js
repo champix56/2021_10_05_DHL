@@ -1,46 +1,52 @@
-var restCrud=new CRUD(REST_SERVER_ADR);
+var restCrud = new CRUD(REST_SERVER_ADR);
 /**
  * model textuel html d'une note
  */
-var noteModel =undefined;
-var users=[];
-function initUsersData(callback) {
-  restCrud.GET(function(resp){
-    var us=JSON.parse(resp);
+var noteModel = undefined;
+function initNoteModel(callback) {
+  var htmlCrud = new CRUD(VIEW_DIRECTORY);
+  htmlCrud.GET(function (resp) {
     console.log(resp);
-    us.forEach(function(unUserDeListe){
-      users.push(new User(unUserDeListe.name,unUserDeListe.img,unUserDeListe.id));
+    noteModel = resp;
+    if (callback) callback();
+  }, "/note.html");
+}
+var users = [];
+function initUsersData(callback) {
+  restCrud.GET(function (resp) {
+    var us = JSON.parse(resp);
+    console.log(resp);
+    us.forEach(function (unUserDeListe) {
+      users.push(
+        new User(unUserDeListe.name, unUserDeListe.img, unUserDeListe.id)
+      );
     });
     callback();
     console.log(users);
-  },'/users');
+  }, "/users");
 }
-initUsersData(function(){
-    initSelectUsers(users);
-    initNotesDatas(function () {
-      refreshListMessages();
-    })
-});
 var notes = new Notes();
-function initNotesDatas(callback){
-  restCrud.GET(function(resp){
-      var objetFromJsonStr=JSON.parse(resp);
-      objetFromJsonStr.forEach(function(noteDeListe){
-          var noteTmp=new Note();
-          Object.assign(noteTmp,noteDeListe);
-          noteTmp.destinataire=users.find(function(e){
-            return e.getId()===noteTmp.destinataireId;
-          });
-          noteTmp.expediteur=users.find(function(e){
-            return e.getId()===noteTmp.expediteurId;
-          });
-          // delete noteTmp.destinataireId;
-          // delete noteTmp.expediteurId;
-          console.log(noteTmp);
-          notes.push(noteTmp);
+function initNotesDatas(callback) {
+  restCrud.GET(function (resp) {
+    var objetFromJsonStr = JSON.parse(resp);
+    objetFromJsonStr.forEach(function (noteDeListe) {
+      var noteTmp = new Note();
+      Object.assign(noteTmp, noteDeListe);
+      noteTmp.destinataire = users.find(function (e) {
+        return e.getId() === noteTmp.destinataireId;
       });
-      if(callback){callback();}
-  },'/notes');
+      noteTmp.expediteur = users.find(function (e) {
+        return e.getId() === noteTmp.expediteurId;
+      });
+      // delete noteTmp.destinataireId;
+      // delete noteTmp.expediteurId;
+      console.log(noteTmp);
+      notes.push(noteTmp);
+    });
+    if (callback) {
+      callback();
+    }
+  }, "/notes");
 }
 /**
  * fonction d'init de notre app bloc note
@@ -52,8 +58,14 @@ function init() {
   var jsl = document.getElementById("jsLoaded");
   jsl.style.backgroundColor = "skyblue";
   jsl.innerHTML = "Js bien chargé";
-
-
+  initUsersData(function () {
+    initSelectUsers(users);
+    initNotesDatas(function () {
+      initNoteModel(function () {
+        refreshListMessages();
+      });
+    });
+  });
   document.querySelector("form").addEventListener("submit", onsubmitnote);
   document
     .querySelector("#form-title")
@@ -73,7 +85,11 @@ init();
 function addNoteEvent(note) {
   var closeButton = note.querySelector(".note-close");
   closeButton.addEventListener("click", function (evt) {
-    note.remove();
+    var noteId=Number(note.id.substring(5));//note-{id}
+    restCrud.DELETE(function(){
+        notes.deleteById(noteId);
+        note.remove();
+    },'/notes',noteId);
   });
 }
 
@@ -107,10 +123,14 @@ function createElementNote(note) {
   element.querySelector(".note-priority").innerHTML = note.priority;
   element.querySelector(".note-expediteur-name").innerHTML = note.expediteur;
 
-  element.querySelector(".note-destinataire-name").innerHTML = (note.destinataire?destinataire.name:'tout le monde');
+  element.querySelector(".note-destinataire-name").innerHTML = note.destinataire
+    ? note.destinataire.name
+    : "tout le monde";
 
   //udt de la source de limage
-  element.querySelector(".note-destinataire-img").src = (note.destinataire?destinataire.img:'/img/robot.png');
+  element.querySelector(".note-destinataire-img").src = note.destinataire
+    ? note.destinataire.img
+    : "/img/robot.png";
 
   element.querySelector(".note-content-right").innerHTML = note.description;
   element.querySelector(".note-date-post").innerHTML = note.dateCible;
