@@ -91,6 +91,18 @@ function addNoteEvent(note) {
         note.remove();
     },'/notes',noteId);
   });
+  //event du toggle
+  note.querySelector(".note-toggle").addEventListener('click',function(evt){
+    var content=note.querySelector(".note-content");
+    if(content.style.display==='none'){
+      content.style.display='flex';
+      evt.target.src='./img/fold.png';
+    }
+    else{
+      content.style.display='none';
+      evt.target.src='./img/unfold.png';
+    }
+  });
 }
 
 function refreshListMessages() {
@@ -187,18 +199,29 @@ function onsubmitnote(evt) {
 
   note.priority = evt.target["form-priority"].value;
   //correlation des info d'unuser en fonction de la selection
+  note.destinataireId=Number(evt.target["form-dest"].value);
   var destinataire = users.find(function (unUserDuTableau) {
-    return unUserDuTableau.getId() === Number(evt.target["form-dest"].value);
+    return unUserDuTableau.getId() === note.destinataireId;
   });
   note.destinataire = destinataire;
-
+  
+  note.expediteurId=0;
+  note.expediteur = users.find(function (unUserDuTableau) {
+    return unUserDuTableau.getId() === note.expediteurId;
+  });
   note.dateCible =
     evt.target["form-date"].value + "T" + evt.target["form-time"].value;
   //lib de formatage et parsing de date / time
   note.dateCreat = moment().format("YYYY-MM-DDTHH:MM");
   console.log(note);
   if (!auMoinsUnChampsInvalid) {
-    document.querySelector("#messages-list").append(createElementNote(note));
+    var note4Rest=JSON.parse(JSON.stringify(note));
+    delete note4Rest.expediteur;
+    delete note4Rest.destinataire;
+    restCrud.POST(function(resp){
+      note.id=JSON.parse(resp).id;
+      document.querySelector("#messages-list").append(createElementNote(note));
+    },'/notes',note4Rest);  
   }
 }
 /**
