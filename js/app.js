@@ -17,10 +17,31 @@ function initUsersData(callback) {
 }
 initUsersData(function(){
     initSelectUsers(users);
-
+    initNotesDatas(function () {
+      refreshListMessages();
+    })
 });
 var notes = new Notes();
-
+function initNotesDatas(callback){
+  restCrud.GET(function(resp){
+      var objetFromJsonStr=JSON.parse(resp);
+      objetFromJsonStr.forEach(function(noteDeListe){
+          var noteTmp=new Note();
+          Object.assign(noteTmp,noteDeListe);
+          noteTmp.destinataire=users.find(function(e){
+            return e.getId()===noteTmp.destinataireId;
+          });
+          noteTmp.expediteur=users.find(function(e){
+            return e.getId()===noteTmp.expediteurId;
+          });
+          // delete noteTmp.destinataireId;
+          // delete noteTmp.expediteurId;
+          console.log(noteTmp);
+          notes.push(noteTmp);
+      });
+      if(callback){callback();}
+  },'/notes');
+}
 /**
  * fonction d'init de notre app bloc note
  */
