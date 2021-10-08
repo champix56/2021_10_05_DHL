@@ -1,3 +1,8 @@
+/**
+ * model textuel html d'une note
+ */
+var noteModel =undefined;
+var users=[];
 var notes = new Notes();
 
 /**
@@ -78,37 +83,6 @@ function createElementNote(note) {
   //retour de l'element completement rempli
   return element;
 }
-/**
- * model textuel html d'une note
- */
-var noteModel =
-  '\
-    <div class="note-buttons">\
-        <div class="empty"></div>\
-        <img src="/img/fold.png" alt="" class="note-toggle">\
-        <img src="/img/edit.png" alt="" class="note-edit">\
-        <img src="/img/close.png" alt="" class="note-close">\
-    </div>\
-    <div class="note-header">\
-        <div class="note-date"></div>\
-        <div class="note-titre"></div>\
-        <div class="note-priority"></div>\
-    </div>\
-    <div class="note-content">\
-        <div class="note-content-left">\
-            <div class="note-expediteur">\
-                <img class="note-expediteur-img" src="" alt="">\
-                <br/>\
-                /<span class="note-expediteur-name"></span>\
-            </div>\
-            <div class="note-datepost">Postée le <br><span class="note-date-post"></span></div>\
-            <div class="note-destinataire"><img class="note-destinataire-img" src="" alt="">\
-                <br/>\
-                /<span class="note-destinataire-name"></span>\
-            </div>\
-        </div>\
-        <div class="note-content-right"></div>\
-</div>';
 /**
  * initialisation du select pour les destinataire
  * @param {Array} users liste des users a charger
