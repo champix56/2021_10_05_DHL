@@ -4,18 +4,21 @@ var restCrud=new CRUD(REST_SERVER_ADR);
  */
 var noteModel =undefined;
 var users=[];
-function initUsersData() {
+function initUsersData(callback) {
   restCrud.GET(function(resp){
     var us=JSON.parse(resp);
     console.log(resp);
     us.forEach(function(unUserDeListe){
       users.push(new User(unUserDeListe.name,unUserDeListe.img,unUserDeListe.id));
     });
-    initSelectUsers(users);
+    callback();
     console.log(users);
   },'/users');
 }
-initUsersData();
+initUsersData(function(){
+    initSelectUsers(users);
+
+});
 var notes = new Notes();
 
 /**
