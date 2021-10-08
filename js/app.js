@@ -1,3 +1,4 @@
+var restCrud=new CRUD(REST_SERVER_ADR);
 /**
  * model textuel html d'une note
  */
