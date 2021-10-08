@@ -51,5 +51,20 @@ var Notes=function(){
     this.get=function(index){
         return _liste[index];
     }
+    /**
+     * fonction pour recuperer la taille de la liste
+     * @returns {number} liste size
+     */
     this.length=function(){return _liste.length;}
+    /**
+     * fonction de suppression d'une note par son id
+     * @param {number} id id de la note a supprimer
+     */
+    this.deleteById=function (id) {
+        var index=_liste.findIndex(function(e){
+            return e.id===id;
+        });
+        _liste.splice(index,1);
+        console.log(_liste);
+    }
 }
